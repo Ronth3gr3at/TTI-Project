@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Montserrat';
+    background: linear-gradient(-160deg, #474747 0%, #1a1a1a 100%);
+    font-size: 18px;
+    height: 100vh;
+}
+
+.container{
+    margin: 0 auto;
+    text-align: center;
+
+    .logo{
+        width: 120px;
+    }
+
+    h1{
+        margin: 1em 0;
+    }
+
+    p{
+        line-height: 1.7rem;
+    }
+
+    .left{
+        background: linear-gradient(160deg, #06159e 0%, #0084ff 100%);
+        padding: 1em;
+        box-shadow: 5px 0 100px rgb(20, 20, 20);
+        p,h1{
+            color: white;
+        }
+    }
+
+    .right p{
+        margin: 2em 0 1em;
+        color: white;
+    }
+
+    .light{
+        color: rgba(255,255,255, .7) !important;
+        margin-top: 2em;
+    }
+
+    input, #submit{
+        width: calc(100% - 3em);
+        padding: .5em;
+        font-size: 1.3rem;
+        outline: none;
+        margin: 1em;
+        margin-bottom: 0;
+    }
+
+    #submit{
+        width: calc(100% - 2em);
+        margin: 0;
+        margin-top: 1em;
+        background: #0084ff;
+        color: white;
+        border: none;
+    }
+
+    #submit:hover{
+        background: #0046c7;
+        transition: 0.2s ease;
+        cursor: pointer;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    body {
+        font-size: 20px;
+    }
+
+    #submit {
+        width: 60% !important;
+    }
+
+    input {
+        width: calc(60% - 1em) !important;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+
+    .logo{
+        margin: 1em 0;
+    }
+
+    p{
+        line-height: 1.7em !important;
+    }
+
+    .inner{
+        display: grid;
+        grid-template-columns: 55% auto;
+
+        .left{
+            text-align: left;
+            padding: 0 2em;
+            height: 100vh;
+            display: grid;
+
+            .content{
+                padding: 0 3em;
+            }
+
+            h1{
+                margin: 0;
+                font-size: 2.4em;
+
+                span{
+                    display: block;
+                }
+            }
+        }
+
+        .right{
+            text-align: right;
+            align-self: center;
+            padding: 0 2em 1.5em;
+            justify-self: center;
+
+            input{
+                width: calc(100% - 1em) !important;
+                margin: 1em 0;
+            }
+
+            #submit{
+                width: 100% !important;
+            }
+        }
+    }
+
+    .proto-container{
+        clip-path: inset(0 45% 0 0);
+        position: absolute;
+        top: 20%;
+        height: 70%;
+        z-index: 0;
+        width: 100%;
+        pointer-events: none;
+        .proto{
+            border: 3px solid rgba(255, 255, 255, .1);
+            width: 19%;
+            height: 80%;
+            float: left;
+            margin-left: 1em;
+            transform: translateX(10%);
+        }
+
+    }
+
+}
+
+@media only screen and (min-width: 1600px){
+    body{
+        font-size: 22px;
+    }
+
+    .content{
+        padding: 0 6em !important;
+    }
+
+    .right{
+        padding: 0 !important;
+    }
+}
