@@ -1,11 +1,4 @@
-let sortDirection = false;
-let dataType;
-
-function sortColumn(columnName){
-    let table = document.getElementsByTagName('table');
-    let columnNames = table[0].tHead.rows[0].cells;
-    
-    //cells[index].innerText
-    
-    sortDirection = !sortDirection;
+function sortColumn(currentCell){
+    window.location.href = `http://localhost:7331/TTI-Project/db_connection/app.php?sort=${currentCell}`;
 }
+
