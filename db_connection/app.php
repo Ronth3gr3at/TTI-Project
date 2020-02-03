@@ -19,85 +19,93 @@ if (!isset($_SESSION['sort'])){
         <div class="left">
             <nav>
                 <ul>
-                    <li><a href="">Home</a></li>
+                    <li><a href="../app_front_end/index.html">Sign Out</a></li>
                     <li><a href="">Portal</a></li>
                     <li><a href="">Settings</a></li>
+                    <li><a href="?employer=true">Employers</a></li>
                 </ul>
             </nav>
         </div>
         <div class="right">
             <?php
                 require_once('EmployeeDAO.php');
-                $connection = new EmployeeDAO();    #init db connection
-                if (!isset($_GET['sort'])){
-                $list = $connection->getAllEmployees(); #returns array
+                require_once('EmployerDAO.php');
+                if (!isset($_GET['employer'])){
+                    $connection = new EmployeeDAO();    #init db connection
+                    if (!isset($_GET['sort'])){
+                        $list = $connection->getAllEmployees(); #returns array
+                        } else {
+                            switch ($_GET['sort']){
+                                case "id":
+                                    if ($_SESSION['sort']){
+                                        $list = $connection->getAllEmployeesById();
+                                        $_SESSION['sort'] = false;
+                                    } else {
+                                        $list = $connection->getAllEmployees();
+                                        $_SESSION['sort'] = true;
+                                    }
+                                    break;
+                                case "name":
+                                    if ($_SESSION['sort']){
+                                        $list = $connection->getAllEmployeesByName();
+                                        $_SESSION['sort'] = false;
+                                    } else {
+                                        $list = $connection->getAllEmployeesByNameDESC();
+                                        $_SESSION['sort'] = true;
+                                    }
+                                    break;
+                                case "phone":
+                                    if ($_SESSION['sort']){
+                                        $list = $connection->getAllEmployeesByPhone();
+                                        $_SESSION['sort'] = false;
+                                    } else {
+                                        $list = $connection->getAllEmployeesByPhoneDESC();
+                                        $_SESSION['sort'] = true;
+                                    }
+                                    break;
+                                case "email":
+                                    if ($_SESSION['sort']){
+                                        $list = $connection->getAllEmployeesByEmail();
+                                        $_SESSION['sort'] = false;
+                                    } else {
+                                        $list = $connection->getAllEmployeesByEmailDESC();
+                                        $_SESSION['sort'] = true;
+                                    }
+                                    break;
+                                case "country":
+                                    if ($_SESSION['sort']){
+                                        $list = $connection->getAllEmployeesByCountry();
+                                        $_SESSION['sort'] = false;
+                                    } else {
+                                        $list = $connection->getAllEmployeesByCountryDESC();
+                                        $_SESSION['sort'] = true;
+                                    }
+                                    break;
+                                case "province":
+                                    if ($_SESSION['sort']){
+                                        $list = $connection->getAllEmployeesByProvince();
+                                        $_SESSION['sort'] = false;
+                                    } else {
+                                        $list = $connection->getAllEmployeesByProvinceDESC();
+                                        $_SESSION['sort'] = true;
+                                    }
+                                    break;
+                                case "city":
+                                    if ($_SESSION['sort']){
+                                        $list = $connection->getAllEmployeesByCity();
+                                        $_SESSION['sort'] = false;
+                                    } else {
+                                        $list = $connection->getAllEmployeesByCityDESC();
+                                        $_SESSION['sort'] = true;
+                                    }
+                                    break;
+                            }
+                        }
                 } else {
-                    switch ($_GET['sort']){
-                        case "id":
-                            if ($_SESSION['sort']){
-                                $list = $connection->getAllEmployeesById();
-                                $_SESSION['sort'] = false;
-                            } else {
-                                $list = $connection->getAllEmployees();
-                                $_SESSION['sort'] = true;
-                            }
-                            break;
-                        case "name":
-                            if ($_SESSION['sort']){
-                                $list = $connection->getAllEmployeesByName();
-                                $_SESSION['sort'] = false;
-                            } else {
-                                $list = $connection->getAllEmployeesByNameDESC();
-                                $_SESSION['sort'] = true;
-                            }
-                            break;
-                        case "phone":
-                            if ($_SESSION['sort']){
-                                $list = $connection->getAllEmployeesByPhone();
-                                $_SESSION['sort'] = false;
-                            } else {
-                                $list = $connection->getAllEmployeesByPhoneDESC();
-                                $_SESSION['sort'] = true;
-                            }
-                            break;
-                        case "email":
-                            if ($_SESSION['sort']){
-                                $list = $connection->getAllEmployeesByEmail();
-                                $_SESSION['sort'] = false;
-                            } else {
-                                $list = $connection->getAllEmployeesByEmailDESC();
-                                $_SESSION['sort'] = true;
-                            }
-                            break;
-                        case "country":
-                            if ($_SESSION['sort']){
-                                $list = $connection->getAllEmployeesByCountry();
-                                $_SESSION['sort'] = false;
-                            } else {
-                                $list = $connection->getAllEmployeesByCountryDESC();
-                                $_SESSION['sort'] = true;
-                            }
-                            break;
-                        case "province":
-                            if ($_SESSION['sort']){
-                                $list = $connection->getAllEmployeesByProvince();
-                                $_SESSION['sort'] = false;
-                            } else {
-                                $list = $connection->getAllEmployeesByProvinceDESC();
-                                $_SESSION['sort'] = true;
-                            }
-                            break;
-                        case "city":
-                            if ($_SESSION['sort']){
-                                $list = $connection->getAllEmployeesByCity();
-                                $_SESSION['sort'] = false;
-                            } else {
-                                $list = $connection->getAllEmployeesByCityDESC();
-                                $_SESSION['sort'] = true;
-                            }
-                            break;
-                    }
+                    $connection == new EmployerDAO();
+                    $list = $connection->getAllEmployers();
                 }
+                
                 #create table script
                 echo '  <table id="myTable">
                             <thead>

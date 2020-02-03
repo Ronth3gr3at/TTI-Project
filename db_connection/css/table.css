@@ -3,6 +3,7 @@ body {
   font-family: 'Montserrat';
   background: #e6e6e6;
   margin: 0;
+  font-size: 1px;
 }
 
 .transition-fade {
